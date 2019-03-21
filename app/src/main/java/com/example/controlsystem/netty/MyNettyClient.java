@@ -14,10 +14,17 @@ import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.util.CharsetUtil;
 
+import org.apache.log4j.Logger;
+
+
+
 public class MyNettyClient extends Thread {
 
-    public static String m_host = "192.168.1.49"; //服务器IP地址
-    public static int m_port = 8000; //服务器端口
+    //打印日志
+    public static final Logger log=Logger.getLogger(MyNettyClient.class);
+
+    public static String m_host = "192.168.1.100"; //服务器IP地址
+    public static int m_port = 8080; //服务器端口
 
     public boolean STOP=false;
 
@@ -37,8 +44,9 @@ public class MyNettyClient extends Thread {
                     //设置UDP的管道工厂
                     .handler(new ClientChannelInitializer());
 
-            //连接客户端
-            //Channel channel = b.connect(m_host, m_port).sync().channel();//TCP的方式
+
+            //Channel channel = b.connect(m_host, m_port).sync().channel();//TCP客户端连接服务器的方式
+            //UDP客户端绑定端口
             Channel channel=b.bind(0).sync().channel();
 
             while (!STOP)
@@ -54,7 +62,7 @@ public class MyNettyClient extends Thread {
 //                        CharsetUtil.UTF_8), new InetSocketAddress(m_host,m_port)));
 //                channel.writeAndFlush(new DatagramPacket(m_commandProtocal),
 //                         new InetSocketAddress(m_host,m_port));
-                Thread.sleep(1000);
+                Thread.sleep(10);
             }
 
         }catch (Exception e){

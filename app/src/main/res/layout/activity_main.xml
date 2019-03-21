@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    xmlns:rockerview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -12,4 +13,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.controlsystem.RockerView
+            android:id="@+id/rockerView_left"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            rockerview:areaBackground="@drawable/default_area_bg"
+            rockerview:rockerBackground="@drawable/default_rocker_bg"
+            rockerview:rockerRadius="20dp"/>
+
+        <com.example.controlsystem.RockerView
+            android:id="@+id/rockerView_right_1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            rockerview:areaBackground="@drawable/skill_outer"
+            rockerview:rockerBackground="@drawable/four"
+            rockerview:rockerRadius="30dp"/>
+
+        <com.example.controlsystem.RockerView
+            android:id="@+id/rockerView_right_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignTop="@+id/rockerView_right_1"
+            android:layout_marginTop="20dp"
+            android:layout_alignLeft="@+id/rockerView_right_1"
+            android:layout_marginLeft="-80dp"
+            rockerview:areaBackground="@drawable/skill_outer"
+            rockerview:rockerBackground="@drawable/two"
+            rockerview:rockerRadius="30dp"/>
+
+        <com.example.controlsystem.RockerView
+            android:id="@+id/rockerView_right_3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignTop="@+id/rockerView_right_1"
+            android:layout_marginTop="-60dp"
+            android:layout_alignLeft="@+id/rockerView_right_1"
+            android:layout_marginLeft="-60dp"
+            rockerview:areaBackground="@drawable/skill_outer"
+            rockerview:rockerBackground="@drawable/three"
+            rockerview:rockerRadius="30dp"/>
+
+        <com.example.controlsystem.RockerView
+            android:id="@+id/rockerView_right_4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignTop="@+id/rockerView_right_1"
+            android:layout_marginTop="-80dp"
+            android:layout_alignLeft="@+id/rockerView_right_1"
+            android:layout_marginLeft="20dp"
+            rockerview:areaBackground="@drawable/skill_outer"
+            rockerview:rockerBackground="@drawable/one"
+            rockerview:rockerRadius="30dp"/>
+    </RelativeLayout>
+
+</FrameLayout>

@@ -22,12 +22,17 @@ public class MainActivity extends BaseActivity{
 
     public static final String TAG="MainActivity";
 
+    //显示视频控件
     private SurfaceView surfaceView;
+    //摇杆与技能控件
+    //private RockerView
+    //HC设备管理者
     private HC_DVRManager hc_dvrManager=null;
     private Bitmap mbitmap;
+    //UDP netty客户端
     private MyNettyClient myNettyClient=null;
+    //控制协议
     private CommandProtocal m_commandProtocal;
-
 
     //OpenCV库静态加载并初始化
     private void staticLoadCVLibraries(){
@@ -175,28 +180,24 @@ public class MainActivity extends BaseActivity{
         //Log.i("KeyDown","keyCode:"+keyCode+"  KeyEvent:"+event);
         switch (keyCode){
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if(m_commandProtocal.getSteer()<=-3000){
+                if(m_commandProtocal.getCmd_curvature()<=-125){
                     break;
                 }
-                m_commandProtocal.setSteer(m_commandProtocal.getSteer()-10);
+                m_commandProtocal.setCmd_curvature((byte)(m_commandProtocal.getCmd_curvature()-1));
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if(m_commandProtocal.getSteer()>=3000){
+                if(m_commandProtocal.getCmd_curvature()>=125){
                     break;
                 }
-                m_commandProtocal.setSteer(m_commandProtocal.getSteer()+10);
+                m_commandProtocal.setCmd_curvature((byte)(m_commandProtocal.getCmd_curvature()+1));
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if(m_commandProtocal.getThrottle()>=100){
+                if(m_commandProtocal.getCmd_velocity()>=60){
                     break;
                 }
-                m_commandProtocal.setThrottle(m_commandProtocal.getThrottle()+5);
+                m_commandProtocal.setCmd_velocity((short)(m_commandProtocal.getCmd_velocity()+5));
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if(m_commandProtocal.getBrake()>=100){
-                    break;
-                }
-                m_commandProtocal.setBrake(m_commandProtocal.getBrake()+5);
                 break;
             case KeyEvent.KEYCODE_BUTTON_THUMBL:
                 Log.i(TAG, "keyCode:"+keyCode+"  KeyEvent:"+event);

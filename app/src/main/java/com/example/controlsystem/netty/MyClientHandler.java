@@ -15,6 +15,7 @@ import io.netty.util.CharsetUtil;
 //    }
 //}
 
+//因为Netty对UDP进行了封装，所以接收到的是DatagramPacket对象
 public class MyClientHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     //接受服务端发送的内容
     @Override

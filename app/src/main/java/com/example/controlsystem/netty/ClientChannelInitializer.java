@@ -23,12 +23,11 @@ public class ClientChannelInitializer extends ChannelInitializer<NioDatagramChan
     protected void initChannel(NioDatagramChannel ch) throws Exception {
         //创建一个执行Handler、自定义编码、解码的容器
         ChannelPipeline pipeline=ch.pipeline();
-        //pipeline.addLast(new StringDecoder());
+        pipeline.addLast(new StringDecoder());
+        pipeline.addLast(new StringEncoder());
         //pipeline.addLast(new CommandEncoder(new InetSocketAddress(m_host,m_port)));
         //执行具体的处理器
         pipeline.addLast("handler",new MyClientHandler());
-
-
     }
 }
 

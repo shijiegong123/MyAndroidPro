@@ -27,7 +27,7 @@ public class CommandEncoder extends MessageToMessageEncoder<CommandProtocal> {
         byte[] bytes= ConverterUtil.Object2Byte(commandProtocal);
         ByteBuf buf=channelHandlerContext.alloc().buffer(bytes.length);
         buf.writeBytes(bytes);
-        //将一个拥有数据和目的地址的新DatagramPacket添加到出站的消息列表中
+        //创建DatagramPacker实例并添加到结果列表
         out.add(new DatagramPacket(buf,remoteAddress));
 
     }
